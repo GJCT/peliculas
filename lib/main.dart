@@ -4,9 +4,11 @@ import 'package:peliculas/screens/screens.dart';
 import 'package:provider/provider.dart';
 
 
-void main() => runApp(AppState());
+void main() => runApp(const AppState());
 
 class AppState extends StatelessWidget {
+  const AppState({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +33,8 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: 'home' ,
       routes: {
-        'home': (_) => HomeScreen(),
-        'details': (_) => DetailsScreen(),
+        'home': (_) => HomePage(),
+        'details': (_) => const PeliculaDetalle(),
       },
       theme: ThemeData.dark().copyWith(
         appBarTheme: const AppBarTheme(
