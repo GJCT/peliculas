@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Peliculas {
 
   List<Pelicula> items = [];
@@ -6,10 +8,10 @@ class Peliculas {
 
   Peliculas.fromJsonList( List<dynamic> jsonList  ) {
 
-    if ( jsonList == null ) return;
+    if ( jsonList.isEmpty ) return;
 
     for ( var item in jsonList  ) {
-      final pelicula = new Pelicula.fromJsonMap(item);
+      final pelicula = Pelicula.fromMap(item);
       items.add( pelicula );
     }
 
@@ -20,9 +22,6 @@ class Peliculas {
 
 
 class Pelicula {
-
-  String uniqueId;
-
   int voteCount;
   int id;
   bool video;
@@ -55,25 +54,25 @@ class Pelicula {
     this.releaseDate,
   });
 
-  Pelicula.fromJsonMap( Map<String, dynamic> json ) {
 
-    voteCount        = json['vote_count'];
-    id               = json['id'];
-    video            = json['video'];
-    voteAverage      = json['vote_average'] / 1;
-    title            = json['title'];
-    popularity       = json['popularity'] / 1;
-    posterPath       = json['poster_path'];
-    originalLanguage = json['original_language'];
-    originalTitle    = json['original_title'];
-    genreIds         = json['genre_ids'].cast<int>();
-    backdropPath     = json['backdrop_path'];
-    adult            = json['adult'];
-    overview         = json['overview'];
-    releaseDate      = json['release_date'];
+  factory Pelicula.fromJson(String str) => Pelicula.fromMap(json.decode(str));
 
-
-  }
+  factory Pelicula.fromMap( Map<String, dynamic> json ) => Pelicula(
+      voteCount        : json['vote_count'],
+      id               : json['id'],
+      video            : json['video'],
+      voteAverage      : json['vote_average'] / 1,
+      title            : json['title'],
+      popularity       : json['popularity'] / 1,
+      posterPath       : json['poster_path'],
+      originalLanguage : json['original_language'],
+      originalTitle    : json['original_title'],
+      genreIds         : json['genre_ids'].cast<int>(),
+      backdropPath     : json['backdrop_path'],
+      adult            : json['adult'],
+      overview         : json['overview'],
+      releaseDate      : json['release_date'],
+  );
 
   getPosterImg() {
 

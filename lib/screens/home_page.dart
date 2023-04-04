@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/pelicula_model.dart';
 import 'package:peliculas/providers/peliculas_provider.dart';
 import 'package:peliculas/search/search_delegate.dart';
 
@@ -35,7 +36,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
+      body: SizedBox(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         
         if ( snapshot.hasData ) {
-          return CardSwiper( peliculas: snapshot.data );
+          return CardSwiper( peliculas: snapshot.data as List<Pelicula>);
         } else {
           return const SizedBox(
             height: 400.0,
@@ -67,14 +68,7 @@ class HomePage extends StatelessWidget {
         
       },
     );
-
-
-
-    
-
-
   }
-
 
   Widget _footer(BuildContext context){
 
@@ -85,7 +79,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.only(left: 20.0),
-            child: Text('Populares', style: Theme.of(context).textTheme.subhead  )
+            child: Text('Populares', style: Theme.of(context).textTheme.titleMedium  )
           ),
           const SizedBox(height: 5.0),
 
@@ -95,7 +89,7 @@ class HomePage extends StatelessWidget {
               
               if ( snapshot.hasData ) {
                 return MovieHorizontal( 
-                  peliculas: snapshot.data,
+                  peliculas: snapshot.data as List<Pelicula>,
                   siguientePagina: peliculasProvider.getPopulares,
                 );
               } else {
@@ -107,7 +101,6 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-
 
   }
 

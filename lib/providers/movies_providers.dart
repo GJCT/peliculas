@@ -1,8 +1,8 @@
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
-import 'package:peliculas/models/search_response.dart';
 
 class MoviesProvider extends ChangeNotifier{
   
@@ -24,7 +24,7 @@ class MoviesProvider extends ChangeNotifier{
 
   }
 
-  Future <String> _getJsonData(String endPoint, {int page = 1}) async{
+  Future <String> getJsonData(String endPoint, [int page = 1]) async{
     final url = Uri.https(_baseUrl, endPoint, {
       'api_Key': _apiKey,
       'language': _language,
@@ -36,9 +36,9 @@ class MoviesProvider extends ChangeNotifier{
   }
 
   getOnDisplayMovie() async{
-    final jsonData = await _getJsonData('3/movie/now_playing');
+    final jsonData = await getJsonData('3/movie/now_playing');
 
-    final nowPlayingResponse = NowPlayingResponse.fromJson(jsonData);
+    final PopularResponse nowPlayingResponse = PopularResponse.fromMap(jsonData);
 
     onDisplayMovie=nowPlayingResponse.results;
     notifyListeners();
@@ -48,16 +48,18 @@ class MoviesProvider extends ChangeNotifier{
   getPopularMovies() async{
 
     _popularPage++;
-    final jsonData = await _getJsonData('3/movie/popular', page: _popularPage);
-    final popularResponse = PopularResponse.fromJson(jsonData);
+    final jsonData = await getJsonData('3/movie/popular', _popularPage);
+    final popularResponse = json.decode(jsonData);
 
-    popularMovies = [...popularMovies ,...popularResponse.results];
+    popularMovies = [...popularMovies, ...popularResponse.result];
     notifyListeners();
   }
 
   Future<List<Cast>> getMovieCast(int movieId) async{
-    final jsonData = await _getJsonData('3/movie/$movieId/credits');
-    final creditsResponse = CreditsResponse.fromJson(jsonData);
+    if( movieCast.containsKey(movieId) ) return movieCast[movieId]!;
+    
+    final jsonData = await getJsonData('3/movie/$movieId/credits');
+    final creditsResponse = json.decode(jsonData);
 
     movieCast[movieId] = creditsResponse.cast;
     return creditsResponse.cast;
@@ -71,7 +73,7 @@ class MoviesProvider extends ChangeNotifier{
     });
 
     final response = await http.get(url);
-    final searchResponse = SearchResponse.fromJson(response.body);
+    final searchResponse = json.decode(response.body);
 
     return searchResponse.results;
   }

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
 import 'package:peliculas/providers/movies_providers.dart';
@@ -23,7 +23,7 @@ class CastingCards extends StatelessWidget {
           return Container(
             constraints: const BoxConstraints(maxWidth: 150),
             height: 180,
-            child: const CupertinoActivityIndicator(),
+            child: const CircularProgressIndicator(),
           );
         }
 

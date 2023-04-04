@@ -45,14 +45,14 @@ class MovieHorizontal extends StatelessWidget {
 
   Widget _tarjeta(BuildContext context, Pelicula pelicula) {
     
-    pelicula.uniqueId = '${ pelicula.id }-poster';
+    pelicula.id = '${ pelicula.id }-poster' as int;
 
     final tarjeta = Container(
         margin: const EdgeInsets.only(right: 15.0),
         child: Column(
           children: <Widget>[
             Hero(
-              tag: pelicula.uniqueId,
+              tag: pelicula.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: FadeInImage(
@@ -85,36 +85,36 @@ class MovieHorizontal extends StatelessWidget {
   }
 
 
-  List<Widget> _tarjetas(BuildContext context) {
+  // List<Widget> _tarjetas(BuildContext context) {
 
-    return peliculas.map( (pelicula) {
+  //   return peliculas.map( (pelicula) {
 
-      return Container(
-        margin: const EdgeInsets.only(right: 15.0),
-        child: Column(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: FadeInImage(
-                image: NetworkImage( pelicula.getPosterImg() ),
-                placeholder: const AssetImage('assets/img/no-image.jpg'),
-                fit: BoxFit.cover,
-                height: 160.0,
-              ),
-            ),
-            const SizedBox(height: 5.0),
-            Text(
-              pelicula.title,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodySmall,
-            )
-          ],
-        ),
-      );
+  //     return Container(
+  //       margin: const EdgeInsets.only(right: 15.0),
+  //       child: Column(
+  //         children: <Widget>[
+  //           ClipRRect(
+  //             borderRadius: BorderRadius.circular(20.0),
+  //             child: FadeInImage(
+  //               image: NetworkImage( pelicula.getPosterImg() ),
+  //               placeholder: const AssetImage('assets/img/no-image.jpg'),
+  //               fit: BoxFit.cover,
+  //               height: 160.0,
+  //             ),
+  //           ),
+  //           const SizedBox(height: 5.0),
+  //           Text(
+  //             pelicula.title,
+  //             overflow: TextOverflow.ellipsis,
+  //             style: Theme.of(context).textTheme.bodySmall,
+  //           )
+  //         ],
+  //       ),
+  //     );
 
 
-    }).toList();
+  //   }).toList();
 
-  }
+  // }
 
 }

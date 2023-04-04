@@ -38,13 +38,12 @@ class _MovileSliderState extends State<MovileSlider> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 300,
       child: Column(

@@ -10,7 +10,7 @@ import 'package:peliculas/models/pelicula_model.dart';
 
 class PeliculasProvider {
 
-  final String _apikey   = '1865f43a0549ca50d341dd9ab8b29f49';
+  final String _apikey   = '9e00b809407dc56e68c8ae9f2699cbcd';
   final String _url      = 'api.themoviedb.org';
   final String _language = 'es-ES';
 
@@ -28,7 +28,7 @@ class PeliculasProvider {
 
 
   void disposeStreams() {
-    _popularesStreamController?.close();
+    _popularesStreamController.close();
   }
 
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Cast {
 
   List<Actor> actores = [];
@@ -5,29 +7,17 @@ class Cast {
 
   Cast.fromJsonList( List<dynamic> jsonList  ){
 
-    if ( jsonList == null ) return;
+    if ( jsonList.isEmpty ) return;
 
     jsonList.forEach( (item) {
-      final actor = Actor.fromJsonMap(item);
+      final actor = Actor.fromMap(item);
       actores.add(actor);
     });
   }
 
 }
 
-
-
-
 class Actor {
-  int castId;
-  String character;
-  String creditId;
-  int gender;
-  int id;
-  String name;
-  int order;
-  String? profilePath;
-
   Actor({
     required this.castId,
     required this.character,
@@ -39,27 +29,45 @@ class Actor {
     this.profilePath,
   });
 
-  Actor.fromJsonMap( Map<String, dynamic> json ) {
+  int castId;
+  String character;
+  String creditId;
+  int gender;
+  int id;
+  String name;
+  int order;
+  String? profilePath;
 
-    castId      = json['cast_id'];
-    character   = json['character'];
-    creditId    = json['credit_id'];
-    gender      = json['gender'];
-    id          = json['id'];
-    name        = json['name'];
-    order       = json['order'];
-    profilePath = json['profile_path'];
-
-  }
-
-   getFoto() {
-
+   get foto{
     if ( profilePath == null ) {
       return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
     } else {
       return 'https://image.tmdb.org/t/p/w500/$profilePath';
     }
-
   }
+
+  factory Actor.fromJson(String str) => Actor.fromMap(json.decode(str));
+
+  factory Actor.fromMap( Map<String, dynamic> json ) => Actor(
+    castId      : json['cast_id'] as int,
+    character   : json['character'],
+    creditId    : json['credit_id'],
+    gender      : json['gender'],
+    id          : json['id'],
+    name        : json['name'],
+    order       : json['order'],
+    profilePath : json['profile_path'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "castId"      : castId,
+    "character"   : character, 
+    "creditId"    : creditId,
+    "gender"      :  gender,
+    "id"          : id,
+    "name"        : name,
+    "order"       : order,
+    "profilePath" : profilePath,
+  };
 
 }

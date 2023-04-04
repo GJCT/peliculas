@@ -8,12 +8,10 @@ import 'package:peliculas/providers/peliculas_provider.dart';
 class PeliculaDetalle extends StatelessWidget {
   const PeliculaDetalle({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
 
-    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
+    final Pelicula pelicula = ModalRoute.of(context)!.settings.arguments as Pelicula;
 
 
     return Scaffold(
@@ -71,7 +69,7 @@ class PeliculaDetalle extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Hero(
-            tag: pelicula.uniqueId,
+            tag: pelicula.id,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image(
@@ -85,12 +83,12 @@ class PeliculaDetalle extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(pelicula.title, style: Theme.of(context).textTheme.title, overflow: TextOverflow.ellipsis ),
-                Text(pelicula.originalTitle, style: Theme.of(context).textTheme.subhead, overflow: TextOverflow.ellipsis ),
+                Text(pelicula.title, style: Theme.of(context).textTheme.titleLarge, overflow: TextOverflow.ellipsis ),
+                Text(pelicula.originalTitle, style: Theme.of(context).textTheme.titleMedium, overflow: TextOverflow.ellipsis ),
                 Row(
                   children: <Widget>[
                     const Icon( Icons.star_border ),
-                    Text( pelicula.voteAverage.toString(), style: Theme.of(context).textTheme.subhead )
+                    Text( pelicula.voteAverage.toString(), style: Theme.of(context).textTheme.titleMedium )
                   ],
                 )
               ],
@@ -108,7 +106,7 @@ class PeliculaDetalle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
       child: Text(
-        pelicula.overview,
+        pelicula.overview as String,
         textAlign: TextAlign.justify,
       ),
     );
@@ -122,10 +120,10 @@ class PeliculaDetalle extends StatelessWidget {
 
     return FutureBuilder(
       future: peliProvider.getCast(pelicula.id.toString()),
-      builder: (context, AsyncSnapshot<List> snapshot) {
+      builder: (context, snapshot) {
         
         if( snapshot.hasData ) {
-          return _crearActoresPageView( snapshot.data );
+          return _crearActoresPageView( snapshot.data as List<Actor>);
         } else {
           return const Center(child: CircularProgressIndicator());
         }
@@ -159,7 +157,7 @@ class PeliculaDetalle extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: FadeInImage(
-              image: NetworkImage( actor.getFoto() ),
+              image: NetworkImage( actor.foto() ),
               placeholder: const AssetImage('assets/img/no-image.jpg'),
               height: 150.0,
               fit: BoxFit.cover,
