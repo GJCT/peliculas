@@ -3,15 +3,17 @@
 //     final nowPlayingResponse = nowPlayingResponseFromJson(jsonString);
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import 'movie.dart';
 
 class NowPlayingResponse {
     NowPlayingResponse({
-        required this.dates,
-        required this.page,
-        required this.results,
-        required this.totalPages,
-        required this.totalResults,
+        @required this.dates,
+        @required this.page,
+        @required this.results,
+        @required this.totalPages,
+        @required this.totalResults,
     });
 
     Dates dates;
@@ -35,8 +37,8 @@ class NowPlayingResponse {
 
 class Dates {
     Dates({
-        required this.maximum,
-        required this.minimum,
+        @required this.maximum,
+        @required this.minimum,
     });
 
     DateTime maximum;

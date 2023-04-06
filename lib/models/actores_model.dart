@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class Cast {
 
   List<Actor> actores = [];
@@ -19,13 +21,13 @@ class Cast {
 
 class Actor {
   Actor({
-    required this.castId,
-    required this.character,
-    required this.creditId,
-    required this.gender,
-    required this.id,
-    required this.name,
-    required this.order,
+    @required this.castId,
+    @required this.character,
+    @required this.creditId,
+    @required this.gender,
+    @required this.id,
+    @required this.name,
+    @required this.order,
     this.profilePath,
   });
 
@@ -36,7 +38,7 @@ class Actor {
   int id;
   String name;
   int order;
-  String? profilePath;
+  String profilePath;
 
    get foto{
     if ( profilePath == null ) {

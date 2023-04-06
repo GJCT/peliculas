@@ -8,7 +8,7 @@ class CardSwiper extends StatelessWidget {
   
   final List<Pelicula> peliculas;
   
-  const CardSwiper({super.key,  required this.peliculas });
+ const CardSwiper({Key key, this.peliculas}) : super(key: key);
 
   
   @override

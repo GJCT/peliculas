@@ -6,12 +6,12 @@ import 'package:peliculas/models/pelicula_model.dart';
 import 'package:peliculas/providers/peliculas_provider.dart';
 
 class PeliculaDetalle extends StatelessWidget {
-  const PeliculaDetalle({super.key});
+  const PeliculaDetalle({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final Pelicula pelicula = ModalRoute.of(context)!.settings.arguments as Pelicula;
+    final Pelicula pelicula = ModalRoute.of(context).settings.arguments as Pelicula;
 
 
     return Scaffold(
@@ -106,7 +106,7 @@ class PeliculaDetalle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
       child: Text(
-        pelicula.overview as String,
+        pelicula.overview,
         textAlign: TextAlign.justify,
       ),
     );

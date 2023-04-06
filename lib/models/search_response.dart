@@ -3,14 +3,15 @@
 //     final searchResponse = searchResponseFromJson(jsonString);
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
 
 class SearchResponse {
     SearchResponse({
-        required this.page,
-        required this.results,
-        required this.totalPages,
-        required this.totalResults,
+        @required this.page,
+        @required this.results,
+        @required this.totalPages,
+        @required this.totalResults,
     });
 
     int page;

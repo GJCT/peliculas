@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class CreditsResponse {
     CreditsResponse({
-        required this.id,
-        required this.cast,
-        required this.crew,
+        @required this.id,
+        @required this.cast,
+        @required this.crew,
     });
 
     int id;
@@ -34,17 +36,17 @@ class CreditsResponse {
 
 class Cast {
     Cast({
-        required this.adult,
-        required this.gender,
-        required this.id,
-        required this.knownForDepartment,
-        required this.name,
-        required this.originalName,
-        required this.popularity,
+        @required this.adult,
+        @required this.gender,
+        @required this.id,
+        @required this.knownForDepartment,
+        @required this.name,
+        @required this.originalName,
+        @required this.popularity,
         this.profilePath,
         this.castId,
         this.character,
-        required this.creditId,
+        @required this.creditId,
         this.order,
         this.department,
         this.job,
@@ -57,13 +59,13 @@ class Cast {
     String name;
     String originalName;
     double popularity;
-    String? profilePath;
-    int? castId;
-    String? character;
+    String profilePath;
+    int castId;
+    String character;
     String creditId;
-    int? order;
-    String? department;
-    String? job;
+    int order;
+    String department;
+    String job;
 
     get fullProfilePath{
       if(profilePath != null){

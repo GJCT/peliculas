@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class Peliculas {
 
   List<Pelicula> items = [];
@@ -28,28 +30,28 @@ class Pelicula {
   double voteAverage;
   String title;
   double popularity;
-  String? posterPath;
-  String? originalLanguage;
+  String posterPath;
+  String originalLanguage;
   String originalTitle;
   List<int> genreIds;
-  String? backdropPath;
+  String backdropPath;
   bool adult;
-  String? overview;
-  String? releaseDate;
+  String overview;
+  String releaseDate;
 
   Pelicula({
-    required this.voteCount,
-    required this.id,
-    required this.video,
-    required this.voteAverage,
-    required this.title,
-    required this.popularity,
+    @required this.voteCount,
+    @required this.id,
+    @required this.video,
+    @required this.voteAverage,
+    @required this.title,
+    @required this.popularity,
     this.posterPath,
     this.originalLanguage,
-    required this.originalTitle,
-    required this.genreIds,
+    @required this.originalTitle,
+    @required this.genreIds,
     this.backdropPath,
-    required this.adult,
+    @required this.adult,
     this.overview,
     this.releaseDate,
   });

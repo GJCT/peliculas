@@ -4,16 +4,14 @@ import 'package:peliculas/models/models.dart';
 class MovileSlider extends StatefulWidget {
 
   final List<Movie> movies;
-  final String? title;
+  final String title;
   final Function onNextPage;
 
-  const MovileSlider(
-    {super.key, 
-    required this.movies, 
-    this.title, 
-    required this.onNextPage
-    }
-  );
+  const MovileSlider({Key key, 
+  this.movies, 
+  this.title, 
+  this.onNextPage}) 
+  : super(key: key);
 
   @override
   State<MovileSlider> createState() => _MovileSliderState();
@@ -53,7 +51,7 @@ class _MovileSliderState extends State<MovileSlider> {
           if(widget.title != null)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(widget.title!, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            child: Text(widget.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
           ),
 
           const SizedBox(height: 5,),

@@ -7,7 +7,7 @@ class MovieHorizontal extends StatelessWidget {
   final List<Pelicula> peliculas;
   final Function siguientePagina;
 
-  MovieHorizontal({super.key, required this.peliculas, required this.siguientePagina });
+ MovieHorizontal({Key key, this.peliculas, this.siguientePagina}) : super(key: key);
 
   final _pageController = PageController(
     initialPage: 1,

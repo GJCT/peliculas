@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   final peliculasProvider = PeliculasProvider();
 
-  HomePage({super.key});
+  HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

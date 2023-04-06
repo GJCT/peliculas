@@ -8,7 +8,7 @@ class CastingCards extends StatelessWidget {
 
   final int movieId;
 
-  const CastingCards( this.movieId, {super.key});
+  const CastingCards({Key key, this.movieId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CastingCards extends StatelessWidget {
           );
         }
 
-        final List<Cast> cast = snapshot.data!;
+        final List<Cast> cast = snapshot.data;
 
         return Container(
           margin: const EdgeInsets.only(bottom: 30),

@@ -1,33 +1,35 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class Movie {
     Movie({
-        required this.adult,
+        @required this.adult,
         this.backdropPath,
-        required this.genreIds,
-        required this.id,
-        required this.originalLanguage,
-        required this.originalTitle,
-        required this.overview,
-        required this.popularity,
+        @required this.genreIds,
+        @required this.id,
+        @required this.originalLanguage,
+        @required this.originalTitle,
+        @required this.overview,
+        @required this.popularity,
         this.posterPath,
         this.releaseDate,
-        required this.title,
-        required this.video,
-        required this.voteAverage,
-        required this.voteCount,
+        @required this.title,
+        @required this.video,
+        @required this.voteAverage,
+        @required this.voteCount,
     });
 
     bool adult;
-    String? backdropPath;
+    String backdropPath;
     List<int> genreIds;
     int id;
     String originalLanguage;
     String originalTitle;
     String overview;
     double popularity;
-    String? posterPath;
-    String? releaseDate;
+    String posterPath;
+    String releaseDate;
     String title;
     bool video;
     double voteAverage;
